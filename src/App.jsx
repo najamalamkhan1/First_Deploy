@@ -5,23 +5,20 @@ import SecondComp from './componets/FirstComp/SecondComp'
 import {BrowserRouter,Routes,Route,Navigate} from 'react-router-dom'
 import Login from './componets/Login/Login'
 import LocalStorge from './componets/FirstComp/localstorge/LocalStorge'
-const user = localStorage.getItem('user')
-const objUser = JSON.parse(user)
+import Cover from './componets/Cover'
+import Signup from './componets/FirstComp/Signup'
+const token = localStorage.getItem('token')
 const App = ()=>{
 
 return(
+  // <Cover />
+  // <Signup />
   <BrowserRouter>
   <Routes>
-    <Route path='/home' element={<SecondComp />}></Route>
-    <Route path='/ls' element={<LocalStorge />}></Route>
-    <Route path='/login' element={
-      <Login /> }></Route>
-    <Route path='/products' element={<Protected>
-      <FirstComp />
-    </Protected>}></Route>
+    <Route path='/' element={token ? <Navigate to="/products" />:<Signup />}  />
+    <Route path='/products' element={token ? <Cover />:<Navigate to ="/" />} />
 
-
-  </Routes>
+    </Routes>
   </BrowserRouter>
   
 
