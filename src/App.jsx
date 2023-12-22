@@ -7,6 +7,7 @@ import Login from './componets/Login/Login'
 import LocalStorge from './componets/FirstComp/localstorge/LocalStorge'
 import Cover from './componets/Cover'
 import Signup from './componets/FirstComp/Signup'
+import { CartContext } from './CreateContext'
 const token = localStorage.getItem('token')
 const App = ()=>{
 
@@ -15,8 +16,10 @@ return(
   // <Signup />
   <BrowserRouter>
   <Routes>
-    <Route path='/' element={token ? <Navigate to="/products" />:<Signup />}  />
+ <CartContext.Provider value="sheraz">
+ <Route path='/' element={token ? <Navigate to="/products" />:<Signup />}  />
     <Route path='/products' element={token ? <Cover />:<Navigate to ="/" />} />
+ </CartContext.Provider>
 
     </Routes>
   </BrowserRouter>
